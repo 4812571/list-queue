@@ -3,6 +3,7 @@ ListQueue.__index = ListQueue
 
 function ListQueue.new()
 	local self = setmetatable({}, ListQueue)
+    self._count = 0
 	self._first = nil
 	self._last = nil
 	return self
@@ -16,6 +17,8 @@ function ListQueue:Push(value)
 		self._last[2] = {value, nil}
 		self._last = self._last[2]
 	end
+
+    self._count += 1
 end
 
 function ListQueue:Pop()
@@ -28,10 +31,17 @@ function ListQueue:Pop()
 		self._first = self._first[2]
 	end
 
+    self._count -= 1
+
 	return value
 end
 
 function ListQueue:Peek()
     return if self._first then self._first[1] else nil
 end
+
+function ListQueue:Count()
+    return self._count
+end
+
 return ListQueue
