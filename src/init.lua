@@ -31,4 +31,7 @@ function ListQueue:Pop()
 	return value
 end
 
+function ListQueue:Peek()
+    return if self._first then self._first[1] else nil
+end
 return ListQueue
